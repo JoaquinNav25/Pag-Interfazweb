@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Stock Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-warehouse"></i> Interfaz stock de Bodega</h1>
+            <div class="last-update">Last updated: <span id="update-time">Loading...</span></div>
+        </header>
+
+        <div class="dashboard-grid">
+            <section class="card stock-levels">
+                <h2><i class="fas fa-boxes"></i> Niveles de stock actuales</h2>
+                <div class="category-bars" id="stock-levels-container"></div>
+            </section>
+
+            <section class="card transactions">
+                <h2><i class="fas fa-exchange-alt"></i> Movimientos</h2>
+                <div class="controls">
+                    <button id="refresh-btn"><i class="fas fa-sync-alt"></i> Actualizar</button>
+                    <select id="category-filter">
+                        <option value="all"> Todas las Categ.</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>UID</th>
+                                <th>Categoría</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="card consumption-chart">
+                <h2><i class="fas fa-chart-line"></i> Análisis Caja Standard</h2>
+                <div class="chart-container">
+                    <canvas id="consumption-chart"></canvas>
+                </div>
+            </section>
+
+            <section class="card consumption-chart">
+                <h2><i class="fas fa-chart-line"></i> Análisis Bolsa azul Standard</h2>
+                <div class="chart-container">
+                    <canvas id="consumption-chart-cat2"></canvas>
+                </div>
+            </section>
+
+            <section class="card summary-stats">
+                <h2><i class="fas fa-info-circle"></i> Datos cajas standard</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="stock-coverage-cat1">N/A</div>
+                        <div class="stat-label">Cobertura de Stock</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="stock-break-month-cat1">N/A</div>
+                        <div class="stat-label">Quiebre de Stock (mes)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="rop-cat1">0</div>
+                        <div class="stat-label">Punto de Reorden (ROP)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="priority-cat1" style="color:#2ecc71;">Baja</div>
+                        <div class="stat-label">Prioridad</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card summary-stats">
+                <h2><i class="fas fa-info-circle"></i> Datos bolsa azul standard</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="stock-coverage-cat2">N/A</div>
+                        <div class="stat-label">Cobertura de Stock</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="stock-break-month-cat2">N/A</div>
+                        <div class="stat-label">Quiebre de Stock (mes)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="rop-cat2">0</div>
+                        <div class="stat-label">Punto de Reorden (ROP)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="priority-cat2" style="color:#2ecc71;">Baja</div>
+                        <div class="stat-label">Prioridad</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="script.js"></script>
+</body>
+</html>
